@@ -1,0 +1,411 @@
+
+:root{
+  --brand-red:#c80018;
+  --brand-pink:#ff4d8d;
+  --text:#121316;
+  --card-bg: rgba(255,255,255,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--text);
+  background: linear-gradient(180deg, var(--brand-red) 0%, #e0143b 8%, var(--brand-pink) 28%, #ff86b0 58%, #ffe2ec 90%, #fff 98%, #fff 100%);
+  background-attachment: fixed;
+  display:flex; flex-direction:column; min-height:100vh;
+  --fade-dur-in: 900ms;
+  --fade-dur-out: 650ms;
+  --fade-ease: cubic-bezier(.22,.61,.36,1); /* natural easeOut */
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+
+/* Header */
+.header{position:sticky;top:0;z-index:1000;background:#ffffff;border-bottom:1px solid rgba(0,0,0,.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:80px}
+.nav-left{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.nav-left a[data-i18n^="nav."]{font-weight:700;opacity:.9;transition:opacity .25s ease}
+.nav-left a[data-i18n^="nav."]:hover{opacity:1}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:24px;white-space:nowrap}
+.logo img{height:64px;width:auto;display:block}
+.nav-right{display:flex;align-items:center;gap:14px}
+.login-btn{
+  padding:12px 18px;border-radius:999px;border:1px solid rgba(0,0,0,.1);
+  background:linear-gradient(180deg,#fff, #f4f4f4);
+  box-shadow:0 2px 4px rgba(0,0,0,.08);
+  transition:transform .25s ease, box-shadow .25s ease;
+  font-weight:700;
+}
+.login-btn:hover{transform:translateY(-1px); box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.lang-select{padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.12);background:#fff}
+
+/* Transitions: true smooth fade + slight content shift */
+body.page-enter{opacity:0; transform: translateY(10px);}
+body.page-enter.page-ready{opacity:1; transform: translateY(0); transition: opacity var(--fade-dur-in) var(--fade-ease), transform var(--fade-dur-in) var(--fade-ease);}
+body.page-exit{opacity:1; transform: translateY(0);}
+body.page-exit.page-leave{opacity:0; transform: translateY(-10px); transition: opacity var(--fade-dur-out) var(--fade-ease), transform var(--fade-dur-out) var(--fade-ease); pointer-events:none}
+
+/* Main + footer */
+main{flex:1 0 auto}
+.footer{flex-shrink:0;padding:28px 0;color:#333;text-align:center;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
+
+/* Hero */
+.hero{position:relative;min-height:60vh;display:flex;align-items:center;background: url('assets/hero.jpg') center/cover no-repeat;color:#fff}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.52), rgba(0,0,0,.38) 40%, rgba(0,0,0,.25))}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:72px;letter-spacing:4px;text-transform:uppercase;font-weight:900}
+.hero p{margin-top:16px;font-size:22px;opacity:.95;max-width:920px}
+
+/* Sections & cards */
+.section{padding:72px 0}
+.grid{display:grid;gap:32px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:var(--card-bg);
+  border-radius:26px;padding:36px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.10);
+  transition:transform .35s ease, box-shadow .35s ease, opacity .6s ease;
+  backdrop-filter: blur(4px);
+  opacity:0; transform:translateY(14px);
+}
+.card.show{opacity:1; transform:translateY(0)}
+.card h2{font-size:32px;margin-bottom:12px}
+.card h3{font-size:24px;margin-bottom:10px}
+.card p{font-size:18px;line-height:1.85}
+.lead{font-size:20px;line-height:1.85}
+
+/* Forms */
+.form input, .form button, .form select, .form textarea{
+  padding:18px 20px;border-radius:14px;border:1px solid rgba(0,0,0,.12);font-size:18px
+}
+.form textarea{min-height:180px;resize:vertical}
+.form button{background:var(--brand-red);color:#fff;border:none;cursor:pointer;transition:opacity .25s ease, transform .25s ease}
+.form button:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Tables */
+.table{width:100%;border-collapse:collapse;margin-top:14px}
+.table th,.table td{border-bottom:1px solid #eee;padding:12px 10px;text-align:left;font-size:17px}
+
+/* Small helpers */
+.small{font-size:13px;opacity:.8;margin-top:10px}
+.warning{color:#850000;font-weight:800;margin-top:10px;font-size:16px}
+
+/* Casino */
+.casino-card{border-radius:26px;padding:32px;box-shadow:0 12px 36px rgba(0,0,0,.10);background:var(--card-bg);backdrop-filter: blur(4px)}
+.casino-roller{display:flex;gap:12px;justify-content:center;align-items:center;margin:16px 0}
+.digit{
+  width:64px;height:84px;border-radius:16px;border:1px solid rgba(0,0,0,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;font-weight:900;background:#fafafa;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+.casino-card .controls{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.casino-card h3, .casino-card #casinoResult { text-align:center; width:100%; }
+.casino-card.win{box-shadow:0 18px 50px rgba(200,0,24,.35), inset 0 0 0 3px rgba(255,77,141,.35)}
+
+/* Login bigger */
+.login-wrap{max-width:760px;margin:0 auto}
+
+@media (max-width:1100px){
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .hero h1{font-size:48px}
+}
+
+/* --- v8.9 additions: mobile-first tuning --- */
+.hero h1{word-break:break-word}
+.casino-card p{ text-align:center; } /* center chances text */
+#casinoResult{ display:inline-block; text-align:center; }
+
+/* Better container padding on tiny screens */
+@media (max-width:720px){
+  .container{padding:0 16px}
+  .nav{height:70px}
+  .logo img{height:52px}
+  .logo{font-size:20px}
+  .nav-left{gap:14px}
+  .nav-left a[data-i18n^="nav."]{font-weight:700}
+  .lang-select{padding:8px 10px}
+  .login-btn{padding:10px 14px}
+  .hero{min-height:48vh}
+  .hero h1{font-size:42px; letter-spacing:2px}
+  .hero p{font-size:18px; max-width:100%}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .card{padding:26px}
+  .form input, .form button, .form select, .form textarea{font-size:16px; padding:14px 16px}
+  .table th,.table td{font-size:15px}
+  .casino-roller .digit{ width:56px; height:74px; font-size:32px }
+  .controls{ gap:10px }
+  #genBtn,#buyBtn,#playBtn{ width:100%; max-width:520px }
+}
+
+@media (max-width:560px){
+  .nav{height:66px; gap:8px}
+  .logo img{height:44px}
+  .logo{font-size:18px; gap:8px}
+  .nav-left a[data-i18n^="nav."]{font-size:14px}
+  .lang-select{font-size:14px}
+  .login-btn{font-size:14px}
+  .hero h1{font-size:34px}
+  .hero p{font-size:16px}
+  .casino-roller .digit{ width:50px; height:68px; font-size:28px }
+  #numberField{min-width:200px}
+}
+
+@media (max-width:380px){
+  .logo img{height:38px}
+  .logo{font-size:16px}
+  .nav-left{gap:8px}
+  .nav-left a[data-i18n^="nav."]{display:none} /* keep header clean on very small screens */
+  .hero h1{font-size:28px}
+  .casino-roller .digit{ width:44px; height:60px; font-size:24px }
+  #genBtn,#buyBtn,#playBtn{ width:100% }
+}
+
+/* --- v9.5 mobile-only Home behavior --- */
+.mobile-arrow{ display:none; }
+@media (max-width: 720px){
+  .hero{ min-height: 86vh; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .hero-content{ text-align:center; }
+  .mobile-arrow{
+    display:block; position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+    background:#ffffff; color:#c80018; font-weight:900; border:1px solid rgba(0,0,0,.12);
+    border-radius:999px; padding:10px 14px; box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+  /* Turn the Home cards section into a bottom sheet in mobile */
+  #homeCards{
+    position: fixed; left:0; right:0; bottom:0; height: 72vh; z-index: 900;
+    background:#ffffff; border-top-left-radius: 24px; border-top-right-radius: 24px;
+    transform: translateY(100%); transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    overflow-y: auto; padding-top: 18px;
+    box-shadow: 0 -10px 28px rgba(0,0,0,.18);
+  }
+  #homeCards.open{ transform: translateY(0); }
+  /* Ensure gradient still visible behind hero; prevent layout shifts */
+  main{ position: relative; }
+}
+
+/* --- v9.6 mobile header rework: keep logo visible, make nav scrollable, prevent overflow --- */
+.header{ z-index:3000; }
+.container.nav{ position: relative; } /* allow absolute login on mobile */
+@media (max-width: 720px){
+  .nav{ height:auto; padding:10px 0 4px; flex-direction: column; align-items: stretch; gap:8px; }
+  .nav-right{ position:absolute; top:10px; right:16px; }
+  .nav-left{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; gap:16px; padding:6px 16px; }
+  .nav-left::-webkit-scrollbar{ display:none; }
+  .logo{ flex:0 0 auto; margin-right:12px; }
+  .logo img{ height:48px; }
+  /* Make sure header background covers wrapped rows */
+  .header{ background:#fff; box-shadow:0 4px 18px rgba(0,0,0,.08); }
+  /* Prevent page content from sliding under header during transitions on mobile */
+  body.page-enter, body.page-exit{ transform:none; } /* keep fade only to avoid sticky issues */
+  body.page-enter.page-ready, body.page-exit.page-leave{ transition: opacity var(--fade-dur-in) var(--fade-ease); }
+  /* Ensure Contact content doesn't overflow header */
+  main{ padding-top: 2px; }
+}
+/* Override earlier rule that hid nav links on very small screens */
+@media (max-width:380px){
+  .nav-left a[data-i18n^="nav."]{ display:inline-block !important; }
+}
+
+/* --- v9.7 mobile language FAB: remove select from white bar and float in corner --- */
+@media (max-width: 720px){
+  .lang-select{ display:none !important; } /* hide header language select on mobile */
+  #langFab{ position:fixed; right:16px; bottom:18px; z-index:3500; }
+  #langFabBtn{
+    background:#ffffff; color:#c80018; border:1px solid rgba(0,0,0,.12);
+    border-radius:999px; padding:10px 14px; font-weight:900;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+  #langFabMenu{
+    position:absolute; bottom:52px; right:0; background:#fff;
+    border:1px solid rgba(0,0,0,.12); border-radius:14px; padding:6px;
+    box-shadow:0 12px 24px rgba(0,0,0,.18); display:none; min-width:180px;
+  }
+  #langFabMenu.open{ display:block; }
+  #langFabMenu button{
+    display:block; width:100%; text-align:left; padding:8px 12px; border:0;
+    background:transparent; border-radius:10px; font-weight:700;
+  }
+  #langFabMenu button:hover{ background:rgba(0,0,0,.06); }
+}
+
+/* --- v9.8 mobile fixes --- */
+@media (max-width: 720px){
+  /* Move login off the white bar */
+  .nav-right .login-btn{ display:none !important; }
+  #loginFab{ position:fixed; left:16px; bottom:18px; z-index:3500; }
+  #loginFab a{
+    display:inline-block; background:#ffffff; color:#c80018; border:1px solid rgba(0,0,0,.12);
+    border-radius:999px; padding:10px 14px; font-weight:900; text-decoration:none;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+  /* Ensure Home hero always visible initially */
+  #homeCards{
+    position: fixed; left:0; right:0; bottom:0; height: 68vh; z-index: 900;
+    background:#ffffff; border-top-left-radius: 24px; border-top-right-radius: 24px;
+    transform: translateY(100%); transition: transform .6s cubic-bezier(.22,.61,.36,1);
+    overflow-y: auto; padding-top: 18px; box-shadow: 0 -10px 28px rgba(0,0,0,.18);
+    display:none; /* hidden by default to avoid covering hero */
+  }
+  #homeCards.open{ transform: translateY(0); display:block; }
+}
+
+/* --- v9.9 mobile header: login + language back on white bar, FABs hidden --- */
+@media (max-width: 720px){
+  /* show header controls again */
+  .nav{ height:auto; padding:10px 0 6px; flex-direction: column; align-items: stretch; gap:8px; }
+  .nav-left{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; gap:16px; padding:6px 16px; }
+  .nav-right{ display:flex; gap:10px; padding:0 16px 6px; align-self:flex-end; }
+  .lang-select{ display:inline-block !important; font-size:14px; padding:8px 10px; }
+  .nav-right .login-btn{ display:inline-block !important; padding:10px 14px; font-size:14px; }
+  /* hide floating FABs entirely */
+  #langFab, #loginFab{ display:none !important; }
+  /* keep header compact and above content */
+  .header{ background:#fff; box-shadow:0 4px 18px rgba(0,0,0,.08); z-index:3000; }
+}
+
+/* --- v9.10 mobile adjustments --- */
+@media (max-width: 720px){
+  /* Remove Home cards and arrow entirely on phones */
+  #homeCards, #mobileArrow{ display:none !important; }
+  /* Put login + lang at the end of the horizontal scroll header */
+  .nav-left{ flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; gap:16px; padding:6px 16px; }
+  .nav-right{ display:none !important; } /* hide separate right area on mobile */
+  .nav-left .login-btn{ display:inline-block; padding:10px 14px; font-size:14px; }
+  .nav-left .lang-select{ display:inline-block; font-size:14px; padding:8px 10px; }
+}
+
+/* --- v9.11 mobile: show Home cards below hero, no bottom-sheet, desktop unchanged --- */
+@media (max-width: 720px){
+  /* ensure cards visible and in normal flow */
+  #homeCards{
+    position: static !important;
+    left:auto !important; right:auto !important; bottom:auto !important;
+    height: auto !important;
+    transform: none !important;
+    display: block !important;
+    background:#ffffff;
+    border-top-left-radius: 0 !important; border-top-right-radius: 0 !important;
+    box-shadow: none !important;
+    padding-top: 24px;
+  }
+  /* keep arrow hidden */
+  #mobileArrow{ display:none !important; }
+}
+
+/* --- v9.12 mobile: Home like other pages (no gradient, rounded hero card) --- */
+@media (max-width: 720px){
+  body{ background:#ffffff !important; }
+  .hero{ min-height:auto; padding:18px 0 0; background:none !important; }
+  .hero::after{ display:none !important; }
+  .hero .hero-content{
+    background:#ffffff; border-radius:26px; padding:24px;
+    box-shadow: 0 12px 36px rgba(0,0,0,.08); color: var(--text);
+  }
+  .hero h1{ color: var(--text); font-size:38px; letter-spacing:2px; }
+  #homeCards{ padding-top: 18px !important; }
+}
+
+/* --- v9.13 mobile: restore gradient + hero image (keep cards below) --- */
+@media (max-width: 720px){
+  /* Bring back site gradient */
+  body{
+    background: linear-gradient(180deg, var(--brand-red) 0%, #e0143b 8%, var(--brand-pink) 28%, #ff86b0 58%, #ffe2ec 90%, #fff 98%, #fff 100%) !important;
+    background-attachment: fixed !important;
+  }
+  /* Restore hero visual */
+  .hero{
+    min-height: 60vh !important;
+    background: url('assets/hero.jpg') center/cover no-repeat !important;
+    color:#fff !important;
+    padding: 0 !important;
+  }
+  .hero::after{ display:block !important; }
+  .hero .hero-content{
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+  .hero h1{ color:#fff !important; font-size:48px !important; letter-spacing:3px !important; }
+  /* Keep Home cards visible as regular section under hero */
+  #homeCards{ background:#ffffff !important; padding-top:24px !important; }
+}
+
+/* --- v9.14 mobile: make Home identical to desktop --- */
+@media (max-width: 720px){
+  /* Keep global gradient like desktop */
+  body{
+    background: linear-gradient(180deg, var(--brand-red) 0%, #e0143b 8%, var(--brand-pink) 28%, #ff86b0 58%, #ffe2ec 90%, #fff 98%, #fff 100%) !important;
+    background-attachment: fixed !important;
+  }
+  /* Hero identical to desktop */
+  .hero{
+    min-height:60vh !important;
+    background: url('assets/hero.jpg') center/cover no-repeat !important;
+    color:#fff !important;
+    padding:0 !important;
+  }
+  .hero::after{ display:block !important; }
+  .hero .hero-content{ background:transparent !important; border-radius:0 !important; box-shadow:none !important; padding:0 !important; }
+  .hero h1{ font-size:72px !important; letter-spacing:4px !important; color:#fff !important; }
+
+  /* Cards section behaves like desktop (no bottom sheet) */
+  #homeCards{
+    position:static !important; left:auto !important; right:auto !important; bottom:auto !important;
+    height:auto !important; transform:none !important; display:block !important;
+    background:transparent !important; border-radius:0 !important; box-shadow:none !important; padding-top:72px !important;
+  }
+
+  /* Hide the mobile arrow completely */
+  #mobileArrow{ display:none !important; }
+}
+
+/* --- v9.15 mobile: prevent WELCOME from breaking into two lines --- */
+@media (max-width: 720px){
+  .hero h1{
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all !important;
+    letter-spacing: 2px !important;           /* a bit tighter so it fits */
+    font-size: clamp(40px, 16vw, 72px) !important; /* shrink slightly on tiny screens */
+  }
+}
+
+/* --- v9.16: make Home text white, scoped to Home only --- */
+#page-home .hero h1,
+#page-home .hero p,
+#page-home .section .card h2,
+#page-home .section .card h3,
+#page-home .section .card p,
+#page-home .section .lead{
+  color:#ffffff !important;
+}
+/* improve contrast for Home cards only */
+#page-home .section .card{
+  background: rgba(0,0,0,.45) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.28);
+}
+
+/* --- v9.17: Only hero (WELCOME + subheading) is white; cards back to default (both mobile & desktop) --- */
+#page-home .hero h1,
+#page-home .hero p{ color:#ffffff !important; }
+
+#page-home .section .card{
+  background: var(--card-bg) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.10) !important;
+}
+
+#page-home .section .card h2,
+#page-home .section .card h3,
+#page-home .section .card p,
+#page-home .section .lead{
+  color: var(--text) !important;
+}
+
+/* --- v9.18 mobile: ensure Home hero subheading is white --- */
+@media (max-width: 720px){
+  #page-home .hero .hero-content{ color:#ffffff !important; }
+  #page-home .hero .hero-content p{ color:#ffffff !important; }
+}

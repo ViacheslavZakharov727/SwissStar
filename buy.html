@@ -1,0 +1,65 @@
+<!doctype html><html lang='de'><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width, initial-scale=1'/><title>SwissStar</title><link rel='stylesheet' href='style.css'/></head><body id='page-buy' class='page-enter'>
+<header class="header">
+  <div class="container nav">
+    <div class="nav-left">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="SwissStar logo"/><span>Swiss&nbsp;Star</span>
+      </a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="about.html" data-i18n="nav.about">Über uns</a>
+      <a href="network.html" data-i18n="nav.network">Netz</a>
+      <a href="buy.html" data-i18n="nav.buy">Nummer kaufen</a>
+      <a href="careers.html" data-i18="nav.careers" data-i18n="nav.careers">Karriere</a>
+      <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+    </div>
+    <div class="nav-right">
+      <select id="lang" class="lang-select" aria-label="Language">
+        <option value="de">DE</option>
+        <option value="fr">FR</option>
+        <option value="it">IT</option>
+      </select>
+      <a class="login-btn" href="login.html" data-i18n="nav.login">Login</a>
+    </div>
+  </div>
+</header>
+<main>
+<section class="section">
+  <div class="container card">
+    <h2 data-i18n="buy.title">Buy a SwissStar number</h2>
+    <p class="lead" data-i18n="buy.lead">Pick a beautiful +41 number — great for business and personal use. Generate and buy (demo).</p>
+    <div class="form" style="display:flex;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;">
+        <span style="font-weight:700;font-size:18px;">+41</span>
+        <input id="numberField" type="text" aria-label="Number" placeholder="9XXXXXXXX" maxlength="9" style="min-width:260px;margin-left:6px;" readonly />
+      </div>
+      <button id="genBtn" type="button" data-i18n="buy.generate">Generate +41 number</button>
+      <button id="buyBtn" type="button" data-i18n="buy.buy">Buy number</button>
+    </div>
+    <p id="priceLine" style="margin-top:10px;font-weight:800"></p>
+    <p id="buyMsg" class="warning" style="display:none" data-i18n="buy.unavailable">Sorry, this number is unavailable.</p>
+  </div>
+
+  <div class="container" style="margin-top:24px">
+    <div class="casino-card card" id="casino">
+      <h3 data-i18n="casino.title">Versuche dein Glück</h3>
+      <p data-i18n="casino.desc">JACKPOT base chance 0.04%. After 150 spins without a jackpot, the next spin has a 25% chance. Jackpot applies 25% discount to any number.</p>
+      <div class="casino-roller" id="roller">
+        <div class="digit" id="d1">0</div>
+        <div class="digit" id="d2">0</div>
+        <div class="digit" id="d3">0</div>
+      </div>
+      <div class="controls">
+        <button id="playBtn" type="button" class="login-btn" data-i18n="casino.play">Jetzt drehen</button>
+        <span id="casinoResult" style="font-weight:800"></span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container">
+    The SwissStar website was created in 2025 — © 2025 SwissStar. All rights reserved.
+  </div>
+  <script src="script.js"></script>
+</footer>
+</body></html>
